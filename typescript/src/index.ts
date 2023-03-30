@@ -52,6 +52,20 @@ let direction: CardinalDirections = CardinalDirections.South
 
 // -- Example 1
 
+interface IDate {
+  day: number
+  month: number
+  year: number
+}
+
+const today: IDate = {
+  day: 30,
+  month: 30,
+  year: 2023
+}
+
+// -- Example 2
+
 interface ICar {
   type: string,
   model: string,
@@ -68,9 +82,70 @@ const myCar: ICar = {
   }
 }
 
-myCar.run(40)
+myCar.run(40) // 50
 
-// -- Example 2
+// -- Example 3
+
+class Horse {
+  name: string
+  color: string
+  age: number
+  speed: number
+
+  constructor(name: string, color: string, age: number) {
+    
+    // Properties
+    this.name = name
+    this.color = color
+    this.age = age
+    this.speed = 0
+  }
+
+  // Methods
+  run(): void {
+    this.speed += 10
+  }
+}
+
+const myHorse1 = new Horse("Babieca", "Negro azabache", 5)
+console.log(myHorse1.name) // "Babieca"
+
+const myHorse2 = new Horse("Sombragrís", "Blanco", 350)
+console.log(myHorse2.name) // "Sombragrís"
+
+myHorse1.run()
+console.log(myHorse1.speed) // 10
+
+// ---------------------------------------
+
+class Pegasus extends Horse {
+  altitude: number
+
+  constructor(name: string, color: string, age: number, altitude: number) {
+    super(name, color, age)
+
+    // Extending
+    this.altitude = altitude
+  }
+
+  fly() {
+    this.altitude += 5
+  }
+}
+
+const myPegasus = new Pegasus("Naoki", "Plateado", 78, 300)
+console.log(myPegasus.name)
+
+myPegasus.run()
+myPegasus.run()
+myPegasus.run()
+console.log(myPegasus.speed) // 30
+
+myPegasus.fly()
+myPegasus.fly()
+console.log(myPegasus.altitude) // 310
+
+// -- Example 4
 
 interface Shape {
   height: number,
@@ -88,7 +163,7 @@ class Rectangle implements Shape {
     this.width = width
   }
 
-  getArea() {
+  getArea(): number {
     return this.height * this.width
   }
 }
@@ -128,3 +203,36 @@ console.log(mySquare.getArea()) // 9
 const mySuperSquare = new SuperSquare(5, "Marty")
 console.log(mySuperSquare.getArea()) // 25
 mySuperSquare.sayMyName() // "Soy Marty"
+
+// -- Example 5
+
+interface Spider {
+  // Spider properties & methods
+}
+interface Human {
+  // Human properties & methods
+}
+
+class Spiderman implements Spider, Human {
+  // Spider properties & methods
+  // Human properties & methods
+}
+
+// ------------ Casting ------------
+
+let x: number = 345;
+let xString = String(x);
+
+console.log(xString.length);
+
+let p: string = "345";
+let pNumber = Number(p);
+
+// ------------ Generics ------------
+
+function createPair<type1, type2>(a: type1, b: type2): [type1, type2] {
+  return [ a, b ]
+}
+
+console.log(createPair<string, number>("abcd", 45)) // ["abcd", 45]
+console.log(createPair<boolean, string>(true, "jkl")) // [true, "jkl"]

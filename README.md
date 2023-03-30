@@ -28,7 +28,7 @@ Y ejecutarlo según el caso:
 
 Para configurar el compilador para cada proyecto, es posible establecer unas opciones personalizadas mediante el fichero `tsconfig.json`, que se puede generar con:
 
-    tsc init
+    tsc --init
 
 Opcionalmente y en caso de que el proyecto concreto requiera de otros paquetes y/o librerías de terceros no desarrolladas inicialmente en TS, es posible añadir un fichero de declaraciones extra a los módulos JS a incluir, llamado `index.d.ts`.
 
