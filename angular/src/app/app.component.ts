@@ -7,9 +7,15 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'Hola mundo cruel';
+  message = '';
+  domingo: boolean = true
 
-  changeText() {
-    this.title = 'Vamos al descanso'
+  constructor() {
+    if(this.domingo) {
+      this.message = 'No me molestes';
+    }
+    else {
+      this.message = 'A trabajar';
+    }
   }
 }
