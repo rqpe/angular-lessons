@@ -1,0 +1,13 @@
+<h1 [style.color]="titleColor">Hola mundo (componentizado)</h1>
+
+<ul *ngIf="visible" [class]="listClass">
+    <li
+        *ngFor="let item of myList; let i = index"
+        [class.odd]="i % 2 === 0">
+        <a href="">{{ item }}</a>
+    </li>
+</ul>
+<!-- <img [src]="myImage" alt=""> -->
+
+<button (click)="enableBtn()">Activar ({{disabledBtn}})</button>
+<button (click)="showList()" [disabled]="disabledBtn > 0">{{ textBtn }}</button>
