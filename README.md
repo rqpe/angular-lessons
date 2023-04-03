@@ -206,6 +206,10 @@ Angular permite indicar un fichero de plantilla que se renderiza dinámicamente 
 [Guía de estilo](https://github.com/johnpapa/angular-styleguide)  
 [Arquitectura en Angular](https://medium.com/notasdeangular/arquitectura-de-nuestras-aplicaciones-en-angular-84df61691b57)
 
+[Manejo de JSON (I)](https://nicolaslule.com/how-to-use-json-in-angular/)  
+[Manejo de JSON (II)](https://dev.to/rfornal/using-json-in-angular-19ca)  
+[API pública de datos](https://jsonplaceholder.typicode.com/)
+
 ## Ejercicios
 
 1. [TypeScript](https://www.w3schools.com/typescript/typescript_exercises.php)  
@@ -219,3 +223,14 @@ Angular permite indicar un fichero de plantilla que se renderiza dinámicamente 
    - Al pinchar de nuevo, el primer círculo volverá a negro y el segundo se pondrá ámbar (estado 2).
    - Al pinchar de nuevo, el segundo círculo volverá a negro y el tercero se pondrá rojo (estado 3).
    - Al pinchar de nuevo, el tercer círculo volverá a negro y el primero se pondrá verde (volviendo al estado 1).
+4. Desarrollar una SPA (*single page application*) de lista de tareas donde una tarea está compuesta por los siguientes campos:
+
+   - Texto
+   - Prioridad (Alta o Baja)
+
+    Y que tenga las siguientes funcionalidades:
+
+   - Listar todas tareas
+   - Crear una tarea nueva
+   - Modificar tarea (texto y/o prioridad)
+   - Borrar tarea creada
