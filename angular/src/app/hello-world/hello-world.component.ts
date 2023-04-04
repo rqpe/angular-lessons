@@ -7,9 +7,13 @@ import { Component } from '@angular/core';
 })
 
 export class HelloWorldComponent {
+  title = "Hola mundo"
+
   myImage = "https://imageio.forbes.com/specials-images/imageserve/09zFfq433L08b/960x960.jpg?format=jpg&width=960"
-  myList = [1, 2, 3, 4, 6, 7, 8]
-  visible = false
+  
+  myList = ["Almenara", "Burricalvo", "cEnuTrio", "diablillo"]
+
+  visible = true
   textBtn = "Mostrar lista"
   disabledBtn = 3
   titleColor = "green"

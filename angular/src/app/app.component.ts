@@ -7,6 +7,15 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
+  itemNames = ["Rumpelstiltskin", "otro hijo"]
+
+
+
+
+
+
+
+
   message = '';
   domingo: boolean = true;
   myData = '';

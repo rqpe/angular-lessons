@@ -1,9 +1,18 @@
-<app-hello-world></app-hello-world>
+<!--
+  <app-hello-world></app-hello-world>
+-->
 
-<!-- Property binding -->
+<!--
 <p>{{ message }}</p>
 
-<!-- Event binding -->
 <button (click)="showData()">Cargar datos</button>
 
 <div>{{ myData }}</div>
+-->
+
+<!--
+<app-login></app-login>
+-->
+
+<app-item [name]="itemNames[0]"></app-item>
+<app-item [name]="itemNames[1]"></app-item>
