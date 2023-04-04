@@ -7,17 +7,13 @@ import { Component } from '@angular/core';
 })
 
 export class HelloWorldComponent {
-  title = "Hola mundo"
-
-  myImage = "https://imageio.forbes.com/specials-images/imageserve/09zFfq433L08b/960x960.jpg?format=jpg&width=960"
-  
-  myList = ["Almenara", "Burricalvo", "cEnuTrio", "diablillo"]
-
-  visible = true
-  textBtn = "Mostrar lista"
+  visible = false
   disabledBtn = 3
+  title = "Ejemplo doble binding"
+  textBtn = "Mostrar lista"
   titleColor = "green"
   listClass = "blue-bg"
+  myList = ["Almenara", "Burricalvo", "cEnuTrio", "diablillo"]
 
   showList() {
     if(this.visible === false) {
@@ -31,11 +27,8 @@ export class HelloWorldComponent {
   }
 
   enableBtn() {
-    this.disabledBtn--
+    if (this.disabledBtn > 0) {
+      this.disabledBtn--
+    }
   }
-
-
-
-
-
 }

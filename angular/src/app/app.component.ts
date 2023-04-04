@@ -7,23 +7,14 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  itemNames = ["Rumpelstiltskin", "otro hijo"]
-
-
-
-
-
-
-
-
-  message = '';
-  domingo: boolean = true;
-  myData = '';
-
+  sunday = true;
   statusBtn = false;
+  message = 'A trabajar';
+  myData = 'No hay nada que decir';
+  childName = "Rumpelstiltskin"
 
   constructor() {
-    if(this.domingo) {
+    if(this.sunday) {
       this.message = 'No me molestes';
     }
     else {

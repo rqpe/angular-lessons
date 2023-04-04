@@ -1,18 +1,39 @@
-<!--
+<h1>Ejemplos Angular</h1>
+
+<!-- ----------------------------------------- -->
+
+<h2>Ejemplo 1: Property & event binding</h2>
+
+<div>
+  <p>{{ message }}</p>
+  
+  <button (click)="showData()">Cargar datos</button>
+  
+  <div>{{ myData }}</div>
+</div>
+
+<hr>
+
+<!-- ----------------------------------------- -->
+
+<h2>Ejemplo 2: Llamar a otros componentes</h2>
+
+<div>
+  <h3>a) Sin pasar parámetros a los hijos</h3>
+
   <app-hello-world></app-hello-world>
--->
 
-<!--
-<p>{{ message }}</p>
+  <hr>
 
-<button (click)="showData()">Cargar datos</button>
+  <app-login></app-login>
+</div>
 
-<div>{{ myData }}</div>
--->
+<hr>
 
-<!--
-<app-login></app-login>
--->
+<!-- ----------------------------------------- -->
 
-<app-item [name]="itemNames[0]"></app-item>
-<app-item [name]="itemNames[1]"></app-item>
+<h3>b) Pasando parámetros a los hijos</h3>
+
+<div>
+  <app-item [name]="childName"></app-item>
+</div>

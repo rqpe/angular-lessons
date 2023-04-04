@@ -1,22 +1,18 @@
-<h1 [style.color]="titleColor">{{ title | uppercase }}</h1>
+<hr>
 
 <div>
+    <h4 [style.color]="titleColor">{{ title | uppercase }}</h4>
+
     <label for="title">Título: </label>
     <input id="title" [(ngModel)]="title" placeholder="Escribe un título">
 </div>
 
+<hr>
 
-
-
-
-
-
-
-
-
-
-
-
+<div>
+    <button (click)="enableBtn()">Activar ({{disabledBtn}})</button>
+    <button (click)="showList()" [disabled]="disabledBtn > 0">{{ textBtn | uppercase }}</button>
+</div>
 
 <ul *ngIf="visible" [class]="listClass">
     <li
@@ -25,8 +21,3 @@
         <a href="">{{ item | lowercase }}</a>
     </li>
 </ul>
-<!-- <img [src]="myImage" alt=""> -->
-
-<button (click)="enableBtn()">Activar ({{disabledBtn}})</button>
-<button (click)="showList()" [disabled]="disabledBtn > 0">{{ textBtn | uppercase }}</button>
-
