@@ -1,4 +1,4 @@
-# Angular   
+# Angular 2 readme 
 
 ## Introducción a TypeScript
 
