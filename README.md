@@ -192,6 +192,141 @@ Angular permite indicar un fichero de plantilla que se renderiza dinámicamente 
     </div>
     ```
 
+## Servicios
+
+Los servicios son módulos que permiten compartir datos comunes o globales entre componentes, de manera que estos no interactúan directamente para pasarse información, sino que la consumen del o la suministran al servicio.
+
+Para ello, Angular implementa un subsistema interno de injección de dependencias, que permite importar para cada módulo aquellos otros módulos que requieran, independientemente de la arquitectura del proyecto.
+
+Ejemplo:
+
+    import { Injectable } from '@angular/core';
+
+    @Injectable({
+      providedIn: 'root'
+    })
+
+    export class TaskService {
+      // Datos y lógica del servicio
+    }
+
+Para generar un servicio, simplemente se hace con el CLI de esta manera:
+
+    ng generate service task-service
+
+Y para que el componente (u otro servicio) lo puedan utilizar, deben inyectarlo a través de su constructor. Por ejemplo:
+
+    export class TasksComponent {
+
+      tasks = []
+
+      constructor(private taskService: TaskService) { }
+
+      ngOnInit(): void {
+        this.tasks = this.taskService.getTasks();
+      }
+    }
+
+Dado que un servicio generalmente trabajará con datos cuya lectura y escritura son operaciones asíncronas, estas deben tenerse en cuenta para evitar posibles condiciones de carrera.
+
+Angular trabaja con la librería RxJS para gestionar la asincronía, ya que esta implementa un patrón observador con suscripción muy útil en estos casos.
+
+Ejemplo (Servicio):
+
+    import { Injectable } from '@angular/core';
+    import { Observable, of } from 'rxjs';
+
+    interface Task {
+      id: number;
+      task: string;
+    }
+
+    const TASKS: Task[] = [
+      { id: 1, task: 'Task 1' },
+      { id: 2, task: 'Task 2' }
+    ];
+
+    @Injectable({
+      providedIn: 'root'
+    })
+
+    export class TaskService {
+      getTasks(): Observable<Task[]> {
+        const tasks = of(TASKS);
+        return tasks;
+      }
+    }
+
+Ejemplo (Componente):
+
+    export class TasksComponent {
+
+      tasks = []
+
+      constructor(private taskService: TaskService) { }
+
+      ngOnInit(): void {
+        this.tasks = this.taskService
+                          .getTasks()
+                          .subscribe(tasks => this.tasks = tasks);
+      }
+    }
+
+## Routing
+
+El enrutamiento es lo que permite desarrollar SPAs (*single page applications*) de manera que las vistas queden asociadas a determinadas URLs, siendo el framework el que gestione la carga de unos u otros componentes en función de dichas rutas.
+
+El primer paso para implementarlo es mediante el CLI de Angular:
+
+    ng generate module app-routing --flat --module=app
+
+Esto genera un fichero `app-routing.module.ts` en el que se indican las asociaciones entre rutas y componentes:
+
+    import { NgModule } from '@angular/core';
+    import { RouterModule, Routes } from '@angular/router';
+    import { HelloWorldComponent } from './hello-world/hello-world.component';
+    import { TasksComponent } from './tasks/tasks.component';
+
+    const routes: Routes = [
+      { path: '', redirectTo: '/hello-world', pathMatch: 'full' },
+      { path: 'tasks', component: TasksComponent }
+    ];
+
+    @NgModule({
+      imports: [RouterModule.forRoot(routes)],
+      exports: [RouterModule]
+    })
+
+    export class AppRoutingModule { }
+
+Que debe estar convenientemente inyectado a través de `app.module.ts` como cualquier otro módulo:
+
+    // ... Other imports ...
+    import { AppRoutingModule } from './app-routing.module';
+
+    @NgModule({
+      declarations: [
+        // ...
+      ],
+      imports: [
+        // ...
+        AppRoutingModule
+      ],
+      providers: [],
+      bootstrap: [AppComponent]
+    })
+
+    export class AppModule { }
+
+Y finalmente se usa en las plantillas de los componentes de la siguiente forma:
+
+    <nav>
+      <a routerLink="/">Ejemplo Hola Mundo</a>
+      <a routerLink="/tasks">Ejemplo Tareas</a>
+    </nav>
+
+    <router-outlet></router-outlet>
+
 ## Referencias generales
 
 [Documentación oficial TypeScript](https://www.typescriptlang.org/es/)  
@@ -223,7 +358,7 @@ Angular permite indicar un fichero de plantilla que se renderiza dinámicamente 
    - Al pinchar de nuevo, el primer círculo volverá a negro y el segundo se pondrá ámbar (estado 2).
    - Al pinchar de nuevo, el segundo círculo volverá a negro y el tercero se pondrá rojo (estado 3).
    - Al pinchar de nuevo, el tercer círculo volverá a negro y el primero se pondrá verde (volviendo al estado 1).
-4. Desarrollar una SPA (*single page application*) de lista de tareas donde una tarea está compuesta por los siguientes campos:
+4. Desarrollar una SPA de lista de tareas donde una tarea está compuesta por los siguientes campos:
 
    - Texto
    - Prioridad (Alta o Baja)
